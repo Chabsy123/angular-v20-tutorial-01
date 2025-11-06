@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './admin-component.css',
 })
 export class AdminComponent {
-   firstName: "Chukwu";
+   firstName: string = "Chukwu";
 
-   courseName: "Videography";
+   courseName: string = "Videography";
 
-   rollNo: 123456;
+   rollNo: number = 123456;
 }

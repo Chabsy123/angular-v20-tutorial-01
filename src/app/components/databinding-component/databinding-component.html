@@ -1,0 +1,55 @@
+<table>
+  <tr>
+    <td>
+      <!-- Interpolation -->
+       <!-- binding to a property of the component from TS to template-->
+      <h1>Interpolation example</h1>
+      <h1>Course Name: {{courseName}}</h1>
+    </td>
+    <td>
+
+      <h1>Product Price: {{ productPrice }}</h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="text" value="{{courseName}}">
+    </td>
+    <td>
+      <!-- property binding -->
+       <!-- binding to a property of the component from TS to template-->
+      <input [type]="inputType" [maxLength]="max_length" [minLength]="min_char">
+    </td>
+    <td>
+      <p [class]="myClassName">
+        This is a paragraph with a class attribute
+    </td>
+  </tr>
+<!-- Event binding -->
+ <!-- binding to an event of the component from template to TS-->
+  <tr>
+    <td>
+      <button (click)="showWelcomeMessage()">Click me</button>
+    </td>
+    <td>
+      <button (click)="chageCourseName()">Click me to change course name</button>
+    </td>
+    <td>
+      <h1>City</h1>
+      <select (change)="onCityChange()">
+        <option value="">Rune</option>
+        <option value="">Pyramid</option>
+        <option value="">Atlas</option>
+      </select>
+    </td>
+  </tr>
+<!-- Two way binding -->
+ <!-- To use it import formsModule and add it to imports array in app.module.ts-->
+  <!--  When you want to sync the changes of the template and the ts file at the same time by using the ngModel directive-->
+  <tr>
+    <td>
+      <input type="text" [(ngModel)] = "courseName">
+    </td>
+  </tr>
+</table>
+=""
