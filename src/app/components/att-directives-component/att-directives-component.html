@@ -19,5 +19,48 @@
         <button class="btn btn-success" (click)="setBgClass('bg-success')">Green</button>
         <button class="btn btn-danger" (click)="setBgClass('bg-danger')">Red</button>
     </div>
-
 </div>
+
+<div class="row">
+    <div class="col-3">
+       firstName =>  {{firstName}}
+       <br>
+       {{firstName | uppercase}}
+    </div>
+    <div class="col-3">
+        courseName =>  {{courseName}}
+        <br>
+        {{courseName| lowercase}}
+    </div>
+    <div class="col-3">
+        courseName =>  {{courseName}}
+        <br>
+        {{courseName| titlecase}}
+    </div>
+    <div class="col-3">
+       rollNoList =>  {{rollNoList}}
+        <br>
+       {{rollNoList | slice:0:3}}
+       <!-- from zero to the 3rd element -->
+        <br>
+        {{rollNoList | slice:3}}
+        <!-- from the 4th element to the end -->
+    </div>
+    <div class="col-3">
+      studentObj =>  {{studentObj.name}}
+      <br>
+      {{studentObj | json}}
+  </div>
+  <div class="col-3">
+      currentDate =>  {{currentDate}}
+      <br>
+      {{ currentDate | date }}
+      <br>
+      {{ currentDate | date:'dd-MM-yy' }}
+      <br>
+      {{ currentDate | date:'dd-MM-yy' }}
+      <br>
+      {{ currentDate | date:'dd-MMMM-yyyy' }}
+
+  </div>
+  </div>
