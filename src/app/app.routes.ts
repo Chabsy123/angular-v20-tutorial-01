@@ -4,6 +4,7 @@ import { ControlFlowComponent } from './components/control-flow-component/contro
 import { DatabindingComponent } from './components/databinding-component/databinding-component';
 import { SignalComponent } from './components/signal-component/signal-component';
 import { AttDirective } from './components/att-directives-component/att-directives-component';
+import { GetapiComponent } from './components/getapi-component/getapi-component';
 
 export const routes: Routes = [
   {
@@ -28,5 +29,9 @@ export const routes: Routes = [
     path: 'att-directives',
     component: AttDirective
    },
+   {
+    path: 'get-api',
+    component: GetapiComponent
+    },
 ];
 // handles navigation or to achieve page based navigation
