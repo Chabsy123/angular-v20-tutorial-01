@@ -3,6 +3,7 @@ import { AdminComponent } from './components/admin-component/admin-component';
 import { ControlFlowComponent } from './components/control-flow-component/control-flow-component';
 import { DatabindingComponent } from './components/databinding-component/databinding-component';
 import { SignalComponent } from './components/signal-component/signal-component';
+import { AttDirective } from './components/att-directives-component/att-directives-component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,10 @@ export const routes: Routes = [
   {
     path: 'signal',
     component: SignalComponent
+   },
+  {
+    path: 'att-directives',
+    component: AttDirective
    },
 ];
 // handles navigation or to achieve page based navigation
