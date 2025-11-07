@@ -1,6 +1,6 @@
 <h1>Angular v20 Tutorial</h1>
 
-<table style="width: 100%;">
+<!-- <table style="width: 100%;">
   <tr>
     <td>
       <app-admin-component></app-admin-component>
@@ -12,4 +12,26 @@
 
 <app-databinding-component></app-databinding-component>
 <app-signal-component></app-signal-component>
+<app-control-flow-component></app-control-flow-component> -->
+
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" routerLink="admin" routerLinkActive="active">Admin</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link active" routerLink="control-flow-statement">Control-Flow</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link active" routerLink="databinding">Data Binding</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link active" routerLink="signal">Signal</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <router-outlet />
