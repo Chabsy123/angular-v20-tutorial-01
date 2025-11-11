@@ -44,10 +44,35 @@
                 <label for="">Email</label>
                 <input type="text" formControlName="emailId" class="form-control" />
               </div>
+              @if(userForm.controls['emailId'].touched) {
+                            <div class="text-danger">
+                                @if (userForm.controls['emailId'].errors?.['required']) {
+                                <span>This is required</span>
+                                }
+                                @if (userForm.controls['emailId'].errors?.['minlength']) {
+                                <span>min 5 Char Needed</span>
+                                }
+                                @if (userForm.controls['emailId'].errors?.['email']) {
+                                <span>Invalid Email</span>
+                                }
+                            </div>
+
+                            }
               <div class="col-6">
                 <label for="">Password</label>
                 <input type="text" formControlName="password" class="formcontrol" />
               </div>
+
+              @if(userForm.controls['password'].touched) {
+                            <div class="text-danger">
+                                @if (userForm.controls['password'].errors?.['required']) {
+                                <span>This is required</span>
+                                }
+
+
+                            </div>
+
+                            }
               <div class="col-6">
                 <label for="">Full Name</label>
                 <input type="text" formControlName="fullName" class="formcontrol" />
@@ -62,7 +87,7 @@
                 <button class="btn btn-secondary">Reset</button>
               </div>
               <div class="col-6 text-center">
-                <button class="btn btn-success" (click)="onSaveUser()">Save</button>
+                <button class="btn btn-success" [disabled]="userForm.invalid" (click)="onSaveUser()">Save</button>
               </div>
             </div>
           </form>

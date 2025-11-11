@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-user-component',
@@ -15,8 +15,8 @@ export class ReactiveUserComponent implements OnInit {
 // the template of the reactive form from the api that you are using(in your form these are the controls)
   userForm: FormGroup = new FormGroup({
     userId: new FormControl(0),
-    emailId: new FormControl(''),
-    password: new FormControl(''),
+    emailId: new FormControl('', [Validators.required,Validators.minLength(5),]), //
+    password: new FormControl('', Validators.required),
     fullName: new FormControl(''),
     mobileNo: new FormControl('')
   });
