@@ -7,6 +7,7 @@ import { AttDirective } from './components/att-directives-component/att-directiv
 import { GetapiComponent } from './components/getapi-component/getapi-component';
 import { UserComponent } from './user-component/user-component';
 import { ReactiveUserComponent } from './components/reactive-user-component/reactive-user-component';
+import { PipeComponent } from './components/pipe-component/pipe-component';
 // import { UserComponent } from './components/user-component/user-component';
 
 export const routes: Routes = [
@@ -43,6 +44,10 @@ export const routes: Routes = [
    {
     path: 'reactive-user',
     component: ReactiveUserComponent
+   },
+   {
+    path: 'pipe',
+    component: PipeComponent
    }
 ];
 // handles navigation or to achieve page based navigation

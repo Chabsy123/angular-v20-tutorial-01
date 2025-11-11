@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-3">
+        <p>{{courseName}}</p>
+        <p>After upper case => {{courseName | uppercase}}</p>
+        <p>After lower case => {{courseDuration | lowercase}}</p> 
+        <p>After capital case => {{courseDuration | titlecase}}</p>
+    </div>
+    <div class="col-4">
+        <p>{{courseDate}}</p>
+        <p>After date format => {{courseDate}}</p>
+        <p>After date format => {{courseDate | date}}</p>
+        <p>After date format => {{courseDate | date:'dd-MM-yyyy'}}</p>
+        <p>After date format => {{courseDate | date:'dd-MM-yy'}}</p>
+        <p>After date format => {{courseDate | date:'dd-MMM-yy'}}</p>
+        <p>After date format => {{courseDate | date:'dd-MMMM-yy'}}</p>
+    </div>
+    <div class="col-3">
+        <p>{{rollNoList}}</p>
+        <p>After slice => {{rollNoList | slice:2}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <p>{{studentObj}}</p>
+        <p>After json format => {{studentObj | json}}</p>
+    </div>
+    <div class="col-4">
+        name : {{studentObj.name | naPipe}} <br>
+        email: {{studentObj.email | naPipe}} <br>
+        state: {{studentObj.state | naPipe}} <br>
+    </div>
+</div>
+ 

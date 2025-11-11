@@ -7,10 +7,11 @@ import { ControlFlowComponent } from './components/control-flow-component/contro
 import { GetapiComponent } from './components/getapi-component/getapi-component';
 import { UserComponent } from './user-component/user-component';
 import { ReactiveUserComponent } from './components/reactive-user-component/reactive-user-component';
+import { PipeComponent } from './components/pipe-component/pipe-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AdminComponent, DatabindingComponent, SignalComponent,ControlFlowComponent, RouterLink, RouterLinkActive, GetapiComponent,UserComponent, ReactiveUserComponent],
+  imports: [RouterOutlet, AdminComponent, DatabindingComponent, SignalComponent,ControlFlowComponent, RouterLink, RouterLinkActive, GetapiComponent,UserComponent, ReactiveUserComponent, PipeComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
