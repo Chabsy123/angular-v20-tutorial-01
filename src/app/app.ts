@@ -6,10 +6,11 @@ import { SignalComponent } from './components/signal-component/signal-component'
 import { ControlFlowComponent } from './components/control-flow-component/control-flow-component';
 import { GetapiComponent } from './components/getapi-component/getapi-component';
 import { UserComponent } from './user-component/user-component';
+import { ReactiveUserComponent } from './components/reactive-user-component/reactive-user-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AdminComponent, DatabindingComponent, SignalComponent,ControlFlowComponent, RouterLink, RouterLinkActive, GetapiComponent,UserComponent],
+  imports: [RouterOutlet, AdminComponent, DatabindingComponent, SignalComponent,ControlFlowComponent, RouterLink, RouterLinkActive, GetapiComponent,UserComponent, ReactiveUserComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

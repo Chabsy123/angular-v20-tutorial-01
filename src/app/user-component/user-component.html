@@ -14,6 +14,7 @@
                             <th>fullName</th>
                             <th>mobileNo</th>
                             <th>password</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,7 +24,7 @@
                             <td>{{item.emailId}}</td>
                             <td>{{item.fullName}}</td>
                             <td>{{item.mobileNo}}</td>
-                            <td>{{item.passWord}}</td>
+                            <td>{{item.password}}</td>
                             <td>
                               <button class="btn btn-primary btn-sm" (click)="onEdit(item)">Edit</button>
                               <button class="btn btn-danger btn-sm" (click)="onDeleteUser(item.userId)">Delete</button>
