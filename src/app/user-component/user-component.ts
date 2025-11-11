@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class UserComponent implements OnInit {
-// post api is to create new record
+  // post api is to create new record
   userList: any[] = [];
   userObj: any = {
     "userId": 0,
@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
       this.userList = res;
     });
   }
-// old method of calling POST method
+  // old method of calling POST method
   // onSaveUser() {
   //   this.http.post("https://api.freeprojectapi.com/api/GoalTracker/register", this.userObj).subscribe((Result: any) => {
   //    alert("User Registered Successfully");
@@ -40,7 +40,7 @@ export class UserComponent implements OnInit {
   // }, error => {
 
   // })}
-// new method of calling POST method
+  // new method of calling POST method
   onSaveUser() {
     debugger;
     this.http.post("https://api.freeprojectapi.com/api/GoalTracker/register", this.userObj).subscribe({
@@ -54,5 +54,53 @@ export class UserComponent implements OnInit {
     }
     )
   }
+
+  onReset() {
+    this.userObj = {
+      "userId": 0,
+      "emailId": "",
+      "password": "",
+      "fullName": "",
+      "mobileNo": ""
+    }
+  }
+  // this.userObj.userId,this.userObj is put after the url to match the id with the record
+  onUpdateUser() {
+    // apparently you have to add a new property to the object in order for it to work but he said not to worry about it that he will fix it
+    // this.userObj.createdDate = new Date();
+    this.http.put("https://api.freeprojectapi.com/api/GoalTracker/updateUser" + this.userObj.userId, this.userObj).subscribe({
+      next: () => {
+        alert("User Updated Successfully");
+        this.getUsers();
+      },
+      error: (error) => {
+        alert("Error Occurred" + error);
+      }
+    })
+  }
+
+  onDeleteUser(id: number) {
+    debugger;
+    // always try to confirm deletion before deleting
+    const isDeleted = confirm("Are you sure you want to delete this user?");
+    if (isDeleted) {
+      this.http.delete("https://api.freeprojectapi.com/api/GoalTracker/deleteUserById?id=" + id).subscribe({
+        next: () => {
+          alert("User Deleted Successfully!");
+          this.getUsers();
+        },
+        error: (error) => {
+          alert("Error Occurred" + error);
+        }
+      })
+    }
+
+  }
+
+  onEdit(item: any) {
+    this.userObj = item;
+  }
+
+  // when deleting just pass the user id for what you want to delete
 
 }
