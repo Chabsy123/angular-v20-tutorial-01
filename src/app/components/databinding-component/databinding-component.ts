@@ -29,7 +29,7 @@ export class DatabindingComponent {
     alert("Welcome to Angular Tutorial");
   }
 
-  chageCourseName() {
+  changeCourseName() {
     this.courseName = "Photography";
   }
 

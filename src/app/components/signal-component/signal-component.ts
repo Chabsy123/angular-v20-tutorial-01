@@ -7,27 +7,37 @@ import { Component, computed, signal } from '@angular/core';
   styleUrl: './signal-component.css',
 })
 export class SignalComponent {
-    firstName: string = "Cheatan";
 
-  productName = "Moto"
+  // Simple property, not reactive
+  firstName: string = "Cheatan";
 
+  // Another simple property
+  productName = "Moto";
+
+  // Signal: reactive value that can change over time
   courseName = signal<string>('Angular');
 
-  courseDuration = signal("15 Vidoes")
+  // Another signal
+  courseDuration = signal("15 Videos");
 
-  courseDetails = computed(() => this.courseName() + "-" + this.courseDuration)
+  // Computed property: automatically updates if courseName or courseDuration changes
+  courseDetails = computed(() => this.courseName() + " - " + this.courseDuration());
 
+  // Example function demonstrating how to update signals
   construction() {
+    // Updating normal property
     this.firstName = "Rahul";
     console.log(this.firstName);
 
+    // Reading signal value
     console.log(this.courseName());
 
+    // Updating signal after 5 seconds
     setTimeout(() => {
-      this.courseName.set("React")
+      this.courseName.set("React"); // automatically updates template wherever courseName() is used
     }, 5000);
 
-    // this.courseName.set("React")
+    // Logging current value again
     console.log(this.courseName());
   }
 }

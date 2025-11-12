@@ -1,110 +1,184 @@
-
 <div class="row">
-    <div class="col-7">
-        <div class="card">
-            <div class="card-header bg-success">
-                User List
-            </div>
-            <div class="card-body">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Sr No</th>
-                            <th>emailId</th>
-                            <th>fullName</th>
-                            <th>mobileNo</th>
-                            <th>password</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (item of userList; track $index) {
-                        <tr>
-                            <td>{{$index+1}}</td>
-                            <td>{{item.emailId}}</td>
-                            <td>{{item.fullName}}</td>
-                            <td>{{item.mobileNo}}</td>
-                            <td>{{item.password}}</td>
-                            <td>
-                              <button class="btn btn-primary btn-sm" (click)="onEdit(item)">Edit</button>
-                              <button class="btn btn-danger btn-sm" (click)="onDeleteUser(item.userId)">Delete</button>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+  <div class="col-7">
+    <div class="card">
+      <div class="card-header bg-success">User List</div>
+      <div class="card-body">
 
-            </div>
-        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sr No</th>
+              <th>emailId</th>
+              <th>fullName</th>
+              <th>mobileNo</th>
+              <th>password</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Loop through each item in the userList array -->
+            @for (item of userList; track $index) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ item.emailId }}</td>
+              <td>{{ item.fullName }}</td>
+              <td>{{ item.mobileNo }}</td>
+              <td>{{ item.password }}</td>
+              <td>
+                <!-- Buttons trigger edit and delete methods -->
+                <button class="btn btn-primary btn-sm" (click)="onEdit(item)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="onDeleteUser(item.userId)">Delete</button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+
+      </div>
     </div>
-    <div class="col-5">
-        <div class="card">
-            <div class="card-header bg-success">
-                New User
+  </div>
+
+  <!--RIGHT COLUMN: USER FORM -->
+  <div class="col-5">
+    <div class="card">
+      <div class="card-header bg-success">New User</div>
+      <div class="card-body">
+
+        <!-- #formValue creates a reference to the form object -->
+        <!-- "ngForm" lets Angular track form state (valid, invalid, touched, etc.) -->
+        <form #formValue="ngForm">
+          <div class="row">
+
+            <!-- EMAIL FIELD -->
+            <div class="col-6">
+              <label for="">Email</label>
+
+              <input 
+                type="text"
+                #email="ngModel"
+                pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                required
+                [(ngModel)]="userObj.emailId"
+                name="emailId"
+                class="form-control"
+              >
+              <!-- #email="ngModel" -->
+                <!-- "#email" gives this input a local reference name -->
+                <!-- 'ngModel' connects the variable to Angular’s form control for validation -->
+                 <!-- pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" -->
+                <!-- Pattern ensures input looks like a valid email -->
+                <!-- required -->
+                <!-- Field is mandatory -->
+                   <!-- [(ngModel)]="userObj.emailId" -->
+                <!-- Two-way data binding: syncs this input and userObj.emailId -->
+
+              <!-- Show error only when user has interacted with input -->
+              @if(email.touched) {
+              <div class="text-danger">
+                @if (email.errors?.['required']) {
+                <span>This is required</span>
+                }
+                @if (email.errors?.['pattern']) {
+                <span>Email is invalid</span>
+                }
+              </div>
+              }
             </div>
-            <div class="card-body">
-                 <form #formValue="ngForm">
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="">Email</label>
-                            <input type="text" #email="ngModel"
-                                pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required
-                                [(ngModel)]="userObj.emailId" name="emailId" class="form-control">
-                            @if(email.touched) {
-                            <div class="text-danger">
-                                @if (email.errors?.['required']) {
-                                <span>This is required</span>
-                                }
-                                @if (email.errors?.['pattern']) {
-                                <span>Email is invalid</span>
-                                }
 
-                            </div>
+            <!-- ================= PASSWORD FIELD ================= -->
+            <div class="col-6">
+              <label for="">Password</label>
 
-                            }
+              <input
+                type="text"
+                #pwd="ngModel"
+                required
+                minlength="4"
+                [(ngModel)]="userObj.password"
+                name="password"
+                class="form-control"
+              >
+               <!-- #pwd="ngModel" -->
+                <!-- "#pwd" is a local reference for the password input -->
+                <!-- This allows Angular to track validity and show messages -->
 
-                        </div>
-                        <div class="col-6">
-                            <label for="">Password</label>
-                            <input type="text" #pwd="ngModel" required minlength="4" [(ngModel)]="userObj.password"
-                                name="password" class="form-control">
-                            <div class="text-danger">
-                                @if (pwd.errors?.['required']) {
-                                <span>This is required</span>
-                                }
-                                @if (pwd.errors?.['minlength']) {
-                                <span>Min 4 Char Needed</span>
-                                }
+              <div class="text-danger">
+                @if (pwd.errors?.['required']) {
+                <span>This is required</span>
+                }
+                @if (pwd.errors?.['minlength']) {
+                <span>Min 4 Char Needed</span>
+                }
+              </div>
+            </div>
 
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <label for="">Full Name</label>
-                            <input type="text" [(ngModel)]="userObj.fullName" name="fullName" class="form-control">
-                        </div>
-                        <div class="col-6">
-                            <label for="">Mobile No</label>
-                            <input type="text" [(ngModel)]="userObj.mobileNo" name="mobileNo" class="form-control">
-                        </div>
-                </div>
-                <div class="row pt-3">
-                    <div class="col-6 text-center">
-                        <button class="btn btn-secondary" (click)="onReset()">Reset</button>
-                    </div>
-                    <div class="col-6 text-center">
-                      
-                      <!-- for the id to be populated beside the save button -->
-                        {{userObj.userId}}
-                        formValue => {{formValue.invalid}}
-                            @if (userObj.userId == 0) {
-                        <button class="btn btn-success" [disabled]="formValue.invalid"  (click)="onSaveUser()">Save</button>
-                        } @else {
-                           <button class="btn btn-success" (click)="onUpdateUser()">Update</button>
-                        }
+            <!--  FULL NAME FIELD  -->
+            <div class="col-6">
+              <label for="">Full Name</label>
+              <input
+                type="text"
+                [(ngModel)]="userObj.fullName"
+                name="fullName"
+                class="form-control"
+              >
+            </div>
+            <!-- [(ngModel)]="userObj.fullName" -->
+                <!-- Two-way binding for full name -->
 
-                    </div>
-                </div>
-              </form>
-        </div>
+            <!--  MOBILE NO FIELD  -->
+            <div class="col-6">
+              <label for="">Mobile No</label>
+              <input
+                type="text"
+                [(ngModel)]="userObj.mobileNo"
+                name="mobileNo"
+                class="form-control"
+              >
+            </div>
+<!-- [             (ngModel)]="userObj.mobileNo" -->
+                <!-- Two-way binding for mobile number -->
+          </div>
+
+          <!-- BUTTONS SECTION  -->
+          <div class="row pt-3">
+
+            <div class="col-6 text-center">
+              <!-- Resets form and clears input values -->
+              <button class="btn btn-secondary" (click)="onReset()">Reset</button>
+            </div>
+
+            <div class="col-6 text-center">
+              <!-- Shows user ID for debugging and form invalid state -->
+              {{ userObj.userId }}
+              formValue => {{ formValue.invalid }}
+
+              <!-- When adding a new user -->
+              @if (userObj.userId == 0) {
+              <button
+                class="btn btn-success"
+                [disabled]="formValue.invalid"
+               
+                (click)="onSaveUser()"
+              >
+                Save
+              </button>
+              }
+ <!-- Disable button if form is invalid -->
+              <!-- When updating an existing user -->
+              @else {
+              <button
+                class="btn btn-success"
+                (click)="onUpdateUser()"
+              >
+                Update
+              </button>
+              }
+            </div>
+
+          </div>
+        </form>
+
+      </div>
     </div>
+  </div>
 </div>

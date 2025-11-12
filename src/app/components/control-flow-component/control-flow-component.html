@@ -1,84 +1,102 @@
 <table>
-    <tr>
-        <td>
-            @if(isParaVisible === true) {
-                <span>Sample</span>
-               <p>This is Sample Para</p>
-            }  @else {
-                <small>Small Tag</small>
-                <h3>isParaVisible has False</h3>
-            }
+  <tr>
+    <!-- Conditional rendering using @if / @else -->
+    <td>
+      @if(isParaVisible === true) {
+        <!-- Displayed only when isParaVisible is true -->
+        <span>Sample</span>
+        <p>This is Sample Para</p>
+      } @else {
+        <!-- Displayed only when isParaVisible is false -->
+        <small>Small Tag</small>
+        <h3>isParaVisible has False</h3>
+      }
+    </td>
 
-        </td>
-        <td>
-            <button (click)="showP()">Show P</button>
-        </td>
-        <td>
-            <button (click)="hideP()">Hide P</button>
-        </td>
-    </tr>
-    <tr>
-       <td>
-         @if(startMonthName == 'jan') {
-          <span>January</span>
-        } @else if (startMonthName == 'feb') {
-            <span>Febuary</span>
-        } @else if (startMonthName == 'mar') {
-            <span>March</span>
-        } @else if (startMonthName == 'apr') {
-            <span>April</span>
-        } @else {
-            <span>Wrong Input</span>
+    <!-- Button to show paragraph -->
+    <td>
+      <button (click)="showP()">Show P</button>
+    </td>
+
+    <!-- Button to hide paragraph -->
+    <td>
+      <button (click)="hideP()">Hide P</button>
+    </td>
+  </tr>
+
+  <tr>
+    <!-- Multiple condition example using @if / @else if / @else -->
+    <td>
+      @if(startMonthName == 'jan') {
+        <span>January</span>
+      } @else if (startMonthName == 'feb') {
+        <span>February</span>
+      } @else if (startMonthName == 'mar') {
+        <span>March</span>
+      } @else if (startMonthName == 'apr') {
+        <span>April</span>
+      } @else {
+        <span>Wrong Input</span>
+      }
+    </td>
+
+    <!-- Two-way binding example -->
+    <td>
+      <!-- Binding input value to startMonthName property -->
+      <input type="text" [(ngModel)]="startMonthName">
+    </td>
+  </tr>
+
+  <tr>
+    <!-- Looping through citiList array with @for -->
+    <td>
+      <ul>
+        @for(item of citiList; track $index) {
+          <li>{{ item }}</li> <!-- Display each city as list item -->
         }
-       </td>
-       <td>
-        <input type="text" [(ngModel)]="startMonthName">
-       </td>
-    </tr>
-    <tr>
-        <td>
-            <ul>
-                @for (item of citiList; track $index) {
-                    <li>{{item}}</li>
+      </ul>
+    </td>
 
-                }
-
-            </ul>
-        </td>
-        <td>
-            <select name="" id="">
-                @for (item of citiList; track $index) {
-                    <option value="">{{item}}</option>
-                }
-            </select>
-        </td>
-    </tr>
+    <td>
+      <!-- Populating select dropdown with citiList array -->
+      <select>
+        @for(item of citiList; track $index) {
+          <option value="">{{ item }}</option>
+        }
+      </select>
+    </td>
+  </tr>
 </table>
 
 <br>
+
 <table>
-    <thead>
-        <tr>
-            <th>Sr No</th>
-            <th>Name</th>
-            <th>City</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (item of studentList; track $index) {
-            <tr>
-                <td>{{$index}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.City}}</td>
-                <td>
-                    @if(item.isActive == true) {
-                        <h6>Active</h6>
-                    } @else {
-                        <h6>De-Active</h6>
-                    }
-                    <!-- {{item.isActive}}</td> -->
-            </tr>
-        }
-    </tbody>
+  <thead>
+    <tr>
+      <th>Sr No</th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <!-- Looping through studentList array -->
+    @for(item of studentList; track $index) {
+      <tr>
+        <td>{{ $index + 1 }}</td> <!-- Display index (Sr No) -->
+        <td>{{ item.name }}</td>
+        <td>{{ item.city }}</td>
+
+        <!-- Conditional rendering of status -->
+        <td>
+          @if(item.isActive == true) {
+            <h6>Active</h6>
+          } @else {
+            <h6>De-Active</h6>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
 </table>

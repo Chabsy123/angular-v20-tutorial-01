@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-4">
+        <!-- Display resource state properties -->
+        {{ userData.hasValue() }} <!-- true if resource has loaded data -->
+        <br>
+        {{ userData.value() }} <!-- returns the actual data once loaded -->
+        <br>
+        {{ userData.isLoading() }} <!-- true while resource is loading -->
+    </div>
+
+    <div class="col-4">
+        <!-- Conditional rendering: only show list if resource has value -->
+        @if(userData.hasValue()) {
+            <ul>
+                @for (item of userData.value(); track $index) {
+                    <li>{{ item.username }}</li> 
+                    <!-- item.username is property from API response -->
+                }
+            </ul>
+        }
+    </div>
+
+    <div class="col-4">
+        <!-- Conditional rendering for rxResource stream -->
+        @if(userList.hasValue()) {
+            <ul>
+                @for (item of userList.value(); track $index) {
+                    <li>{{ item.username }}</li> 
+                    <!-- item.username from API stream -->
+                }
+            </ul>
+        }
+    </div>
+</div>

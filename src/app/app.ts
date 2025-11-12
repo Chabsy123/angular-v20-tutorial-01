@@ -8,10 +8,11 @@ import { GetapiComponent } from './components/getapi-component/getapi-component'
 import { UserComponent } from './user-component/user-component';
 import { ReactiveUserComponent } from './components/reactive-user-component/reactive-user-component';
 import { PipeComponent } from './components/pipe-component/pipe-component';
+import { ResourceApiComponent } from './components/resource-api-component/resource-api-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AdminComponent, DatabindingComponent, SignalComponent,ControlFlowComponent, RouterLink, RouterLinkActive, GetapiComponent,UserComponent, ReactiveUserComponent, PipeComponent],
+  imports: [RouterOutlet, AdminComponent, DatabindingComponent, SignalComponent,ControlFlowComponent, RouterLink, RouterLinkActive, GetapiComponent,UserComponent, ReactiveUserComponent, PipeComponent, ResourceApiComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -3,28 +3,37 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-control-flow-component',
-  imports: [FormsModule],
+  imports: [FormsModule], // Required for [(ngModel)] two-way binding
   templateUrl: './control-flow-component.html',
   styleUrl: './control-flow-component.css',
 })
 export class ControlFlowComponent {
-    isParaVisible = false;
+  
+  // Boolean to show/hide paragraph
+  isParaVisible = false;
 
-  startMonthName : string = "feb";
+  // Input value bound to month name
+  startMonthName: string = "feb";
 
-  citiList : string[] = ["Pune", "Mumbia", "Panji", "Nagpur"];
+  // Array of city names for lists and dropdowns
+  citiList: string[] = ["Pune", "Mumbia", "Panji", "Nagpur"];
 
-  studentList : any[] = [
-    {name: 'AAAA', city:'Pune', isActive:false},
-    {name: 'BB', city:'Mumbia', isActive:false},
-    {name: 'CCC', city:'Pune', isActive:true},
-    {name: 'DDD', city:'Nagpur', isActive:false},
-  ]
+  // Array of students for table example
+  studentList: any[] = [
+    { name: 'AAAA', city: 'Pune', isActive: false },
+    { name: 'BB', city: 'Mumbia', isActive: false },
+    { name: 'CCC', city: 'Pune', isActive: true },
+    { name: 'DDD', city: 'Nagpur', isActive: false },
+  ];
 
+
+  // Methods for buttons
+  // Show paragraph
   showP() {
     this.isParaVisible = true;
   }
 
+  // Hide paragraph
   hideP() {
     this.isParaVisible = false;
   }

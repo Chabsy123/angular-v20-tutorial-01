@@ -1,66 +1,105 @@
 <div class="row">
-    <div class="col-3">
-        <div class="p-3" [ngClass]="divClassName()">
-            Div 1 - {{divClassName()}}
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="p-3" [ngStyle]="{'background-color' : isDiv2Green == true ? 'blue': 'red'}">
-            Div 2
-        </div>
-        <div>
-            <button class="btn btn-success" (click)="toggleDiv2Color()">Toggle BG Color</button>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-3">
-        <button class="btn btn-success" (click)="setBgClass('bg-success')">Green</button>
-        <button class="btn btn-danger" (click)="setBgClass('bg-danger')">Red</button>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-3">
-       firstName =>  {{firstName}}
-       <br>
-       {{firstName | uppercase}}
-    </div>
-    <div class="col-3">
-        courseName =>  {{courseName}}
-        <br>
-        {{courseName| lowercase}}
-    </div>
-    <div class="col-3">
-        courseName =>  {{courseName}}
-        <br>
-        {{courseName| titlecase}}
-    </div>
-    <div class="col-3">
-       rollNoList =>  {{rollNoList}}
-        <br>
-       {{rollNoList | slice:0:3}}
-       <!-- from zero to the 3rd element -->
-        <br>
-        {{rollNoList | slice:3}}
-        <!-- from the 4th element to the end -->
-    </div>
-    <div class="col-3">
-      studentObj =>  {{studentObj.name}}
-      <br>
-      {{studentObj | json}}
-  </div>
+  <!-- FIRST COLUMN - ngClass EXAMPLE -->
   <div class="col-3">
-      currentDate =>  {{currentDate}}
-      <br>
-      {{ currentDate | date }}
-      <br>
-      {{ currentDate | date:'dd-MM-yy' }}
-      <br>
-      {{ currentDate | date:'dd-MM-yy' }}
-      <br>
-      {{ currentDate | date:'dd-MMMM-yyyy' }}
+    <!-- 
+      Using [ngClass] to dynamically set CSS class 
+      returned from the divClassName() method in the component.
+    -->
+    <div class="p-3" [ngClass]="divClassName()">
+      Div 1 - {{divClassName()}}
+    </div>
+  </div>
 
+  <!-- SECOND COLUMN - ngStyle EXAMPLE-->
+  <div class="col-3">
+    <!-- 
+      Using [ngStyle] to change background color dynamically.
+      If isDiv2Green is true => blue, otherwise => red.
+    -->
+    <div class="p-3" [ngStyle]="{'background-color': isDiv2Green == true ? 'blue' : 'red'}">
+      Div 2
+    </div>
+
+    <!-- Button toggles div background color by changing isDiv2Green variable -->
+    <div>
+      <button class="btn btn-success" (click)="toggleDiv2Color()">Toggle BG Color</button>
+    </div>
   </div>
+</div>
+
+<!-- BUTTONS TO CHANGE CLASS (with bg-success / bg-danger) -->
+<div class="row">
+  <div class="col-3">
+    <!-- 
+      These buttons call setBgClass() method in the component 
+      to set background color class (green or red).
+    -->
+    <button class="btn btn-success" (click)="setBgClass('bg-success')">Green</button>
+    <button class="btn btn-danger" (click)="setBgClass('bg-danger')">Red</button>
   </div>
+</div>
+
+<!-- ANGULAR PIPE EXAMPLES -->
+<div class="row">
+
+  <!-- Uppercase pipe example -->
+  <div class="col-3">
+    firstName => {{firstName}}
+    <br>
+    <!-- Converts all text to uppercase -->
+    {{firstName | uppercase}}
+  </div>
+
+  <!-- Lowercase pipe example -->
+  <div class="col-3">
+    courseName => {{courseName}}
+    <br>
+    <!-- Converts all text to lowercase -->
+    {{courseName | lowercase}}
+  </div>
+
+  <!-- Titlecase pipe example -->
+  <div class="col-3">
+    courseName => {{courseName}}
+    <br>
+    <!-- Capitalizes the first letter of each word -->
+    {{courseName | titlecase}}
+  </div>
+
+  <!-- Slice pipe example -->
+  <div class="col-3">
+    rollNoList => {{rollNoList}}
+    <br>
+    <!-- Shows items from index 0 to index 3 (exclusive) -->
+    {{rollNoList | slice:0:3}}
+    <!-- from zero to the 3rd element -->
+
+    <br>
+    <!-- Shows items starting from index 3 till the end -->
+    {{rollNoList | slice:3}}
+    <!-- from the 4th element to the end -->
+  </div>
+
+  <!-- JSON pipe example -->
+  <div class="col-3">
+    studentObj => {{studentObj.name}}
+    <br>
+    <!-- Converts entire object to JSON string format for display -->
+    {{studentObj | json}}
+  </div>
+
+  <!-- Date pipe example -->
+  <div class="col-3">
+    currentDate => {{currentDate}}
+    <br>
+    <!-- Default date formatting -->
+    {{ currentDate | date }}
+    <br>
+    <!-- Custom date formats -->
+    {{ currentDate | date:'dd-MM-yy' }}
+    <br>
+    {{ currentDate | date:'dd-MM-yy' }}
+    <br>
+    {{ currentDate | date:'dd-MMMM-yyyy' }}
+  </div>
+</div>

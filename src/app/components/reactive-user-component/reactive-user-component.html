@@ -15,83 +15,102 @@
             </tr>
           </thead>
           <tbody>
+            <!-- Loop through userList using @for -->
             @for (item of userList; track $index) {
-            <tr>
-              <td>{{ $index + 1 }}</td>
-              <td>{{ item.emailId }}</td>
-              <td>{{ item.fullName }}</td>
-              <td>{{ item.mobileNo }}</td>
-              <td>{{ item.password }}</td>
-              <td>
-                <button class="btn btn-primary btn-sm">Edit</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
+              <tr>
+                <td>{{ $index + 1 }}</td> <!-- Sr No -->
+                <td>{{ item.emailId }}</td>
+                <td>{{ item.fullName }}</td>
+                <td>{{ item.mobileNo }}</td>
+                <td>{{ item.password }}</td>
+                <td>
+                  <!-- Action buttons (you can later bind click events) -->
+                  <button class="btn btn-primary btn-sm">Edit</button>
+                  <button class="btn btn-danger btn-sm">Delete</button>
+                </td>
+              </tr>
             }
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-7">
-      <div class="card">
-        <div class="card-header bg-success">New User</div>
-        <div class="card-body">
-          <form [formGroup]="userForm">
-            <div class="row">
-              <div class="col-6">
-                <label for="">Email</label>
-                <input type="text" formControlName="emailId" class="form-control" />
-              </div>
+</div>
+
+<!-- 
+     NEW USER FORM
+      -->
+<div class="row">
+  <div class="col-7">
+    <div class="card">
+      <div class="card-header bg-success">New User</div>
+      <div class="card-body">
+        <!-- Bind form to reactive FormGroup -->
+        <form [formGroup]="userForm">
+
+          <div class="row">
+
+            <!-- EMAIL FIELD -->
+            <div class="col-6">
+              <label for="">Email</label>
+              <input type="text" formControlName="emailId" class="form-control" />
+              <!-- Validation messages -->
               @if(userForm.controls['emailId'].touched) {
-                            <div class="text-danger">
-                                @if (userForm.controls['emailId'].errors?.['required']) {
-                                <span>This is required</span>
-                                }
-                                @if (userForm.controls['emailId'].errors?.['minlength']) {
-                                <span>min 5 Char Needed</span>
-                                }
-                                @if (userForm.controls['emailId'].errors?.['email']) {
-                                <span>Invalid Email</span>
-                                }
-                            </div>
+                <div class="text-danger">
+                  @if(userForm.controls['emailId'].errors?.['required']) {
+                    <span>This is required</span>
+                  }
+                  @if(userForm.controls['emailId'].errors?.['minlength']) {
+                    <span>Min 5 Char Needed</span>
+                  }
+                  @if(userForm.controls['emailId'].errors?.['email']) {
+                    <span>Invalid Email</span>
+                  }
+                </div>
+              }
+            </div>
 
-                            }
-              <div class="col-6">
-                <label for="">Password</label>
-                <input type="text" formControlName="password" class="formcontrol" />
-              </div>
-
+            <!-- PASSWORD FIELD -->
+            <div class="col-6">
+              <label for="">Password</label>
+              <input type="text" formControlName="password" class="form-control" />
+              <!-- Validation messages -->
               @if(userForm.controls['password'].touched) {
-                            <div class="text-danger">
-                                @if (userForm.controls['password'].errors?.['required']) {
-                                <span>This is required</span>
-                                }
-
-
-                            </div>
-
-                            }
-              <div class="col-6">
-                <label for="">Full Name</label>
-                <input type="text" formControlName="fullName" class="formcontrol" />
-              </div>
-              <div class="col-6">
-                <label for="">Mobile No</label>
-                <input type="text" formControlName="mobileNo" class="formcontrol" />
-              </div>
+                <div class="text-danger">
+                  @if(userForm.controls['password'].errors?.['required']) {
+                    <span>This is required</span>
+                  }
+                </div>
+              }
             </div>
-            <div class="row pt-3">
-              <div class="col-6 text-center">
-                <button class="btn btn-secondary">Reset</button>
-              </div>
-              <div class="col-6 text-center">
-                <button class="btn btn-success" [disabled]="userForm.invalid" (click)="onSaveUser()">Save</button>
-              </div>
+
+            <!-- FULL NAME FIELD -->
+            <div class="col-6">
+              <label for="">Full Name</label>
+              <input type="text" formControlName="fullName" class="form-control" />
             </div>
-          </form>
-        </div>
+
+            <!-- MOBILE NUMBER FIELD -->
+            <div class="col-6">
+              <label for="">Mobile No</label>
+              <input type="text" formControlName="mobileNo" class="form-control" />
+            </div>
+
+          </div>
+
+          <!-- FORM BUTTONS -->
+          <div class="row pt-3">
+            <div class="col-6 text-center">
+              <!-- You can bind reset method here if needed -->
+              <button class="btn btn-secondary">Reset</button>
+            </div>
+            <div class="col-6 text-center">
+              <!-- Save button disabled if form is invalid -->
+              <button class="btn btn-success" [disabled]="userForm.invalid" (click)="onSaveUser()">Save</button>
+            </div>
+          </div>
+
+        </form>
       </div>
     </div>
   </div>

@@ -8,6 +8,7 @@ import { GetapiComponent } from './components/getapi-component/getapi-component'
 import { UserComponent } from './user-component/user-component';
 import { ReactiveUserComponent } from './components/reactive-user-component/reactive-user-component';
 import { PipeComponent } from './components/pipe-component/pipe-component';
+import { ResourceApiComponent } from './components/resource-api-component/resource-api-component';
 // import { UserComponent } from './components/user-component/user-component';
 
 export const routes: Routes = [
@@ -48,6 +49,10 @@ export const routes: Routes = [
    {
     path: 'pipe',
     component: PipeComponent
+   },
+   {
+    path: 'resource-api',
+    component: ResourceApiComponent
    }
 ];
 // handles navigation or to achieve page based navigation

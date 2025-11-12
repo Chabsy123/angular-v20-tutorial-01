@@ -1,63 +1,79 @@
+<!-- Parent container with Bootstrap's row class for layout -->
 <div class="row">
-    <div class="col-4 table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Website</th>
-            <th>User Name</th>
-            <th>Email
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-            @for (item of userList; track $index) {
-                <tr>
-                    <td>{{item.name}}</td>
-                    <td>{{item.website}}</td>
-                    <td>{{item.username}}</td>
-                    <td>{{item.email}}</td>
-                </tr>
-            }
-          </tbody>
-      </table>
-    </div>
-    <div class="col-4 table-responsive">
-      <ul>
-        @for (item of todoList; track $index) {
-            <li>{{item.title}}</li>
 
-        }
-      </ul>
-    </div>
-    <div class="col-4 table-responsive">
-      <table class="table table-bordered">
-        <thead>
+  <!-- First column: Displaying User List in a table -->
+  <div class="col-4 table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <!-- Table headers for user data -->
+          <th>Name</th>
+          <th>Website</th>
+          <th>User Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Looping through the userList array using Angular's new @for syntax -->
+        <!-- track $index helps Angular efficiently render list items -->
+        @for (item of userList; track $index) {
           <tr>
-            <th>User Id</th>
-            <th>User Name</th>
-            <th>Role</th>
-            <th>Full Name</th>
+            <!-- Displaying individual user properties -->
+            <td>{{ item.name }}</td>
+            <td>{{ item.website }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ item.email }}</td>
           </tr>
-          </thead>
-          <tbody>
-            @for (item of busUserList; track $index) {
-                <tr>
-                    <td>{{item.userId}}</td>
-                    <td>{{item.userName}}</td>
-                    <td>{{item.role}}</td>
-                    <td>{{item.fullName}}</td>
-                </tr>
-            }
-          </tbody>
-      </table>
-    </div>
-    <div class="col-4">
-      <ul>
-        @for (item of todoList; track $index) {
-            <li>{{item.title}}</li>
-
         }
-      </ul>
-    </div>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Second column: Displaying Todo List as an unordered list -->
+  <div class="col-4 table-responsive">
+    <ul>
+      <!-- Looping through todoList to display each title -->
+      @for (item of todoList; track $index) {
+        <li>{{ item.title }}</li>
+      }
+    </ul>
+  </div>
+
+  <!-- Third column: Displaying Business User List in a table -->
+  <div class="col-4 table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <!-- Table headers for business users -->
+          <th>User Id</th>
+          <th>User Name</th>
+          <th>Role</th>
+          <th>Full Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Looping through busUserList array -->
+        @for (item of busUserList; track $index) {
+          <tr>
+            <!-- Displaying each user's details -->
+            <td>{{ item.userId }}</td>
+            <td>{{ item.userName }}</td>
+            <td>{{ item.role }}</td>
+            <td>{{ item.fullName }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Fourth column: Another Todo List display (duplicate for demonstration) -->
+  <div class="col-4">
+    <ul>
+      <!-- Re-looping through todoList to show each title again -->
+      @for (item of todoList; track $index) {
+        <li>{{ item.title }}</li>
+      }
+    </ul>
+  </div>
+
 </div>

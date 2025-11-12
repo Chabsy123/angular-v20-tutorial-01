@@ -4,47 +4,66 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 @Component({
   selector: 'app-reactive-user-component',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule], // Needed for reactive forms
   templateUrl: './reactive-user-component.html',
   styleUrl: './reactive-user-component.css',
 })
 export class ReactiveUserComponent implements OnInit {
 
+  // Array to store users fetched from API
   userList: any[] = [];
+
+  // HttpClient for API calls
   http = inject(HttpClient);
-// the template of the reactive form from the api that you are using(in your form these are the controls)
+
+  // =========================
+  // Reactive Form Definition
+  // =========================
   userForm: FormGroup = new FormGroup({
-    userId: new FormControl(0),
-    emailId: new FormControl('', [Validators.required,Validators.minLength(5),]), //
-    password: new FormControl('', Validators.required),
-    fullName: new FormControl(''),
-    mobileNo: new FormControl('')
+    userId: new FormControl(0), // default 0 for new users
+    emailId: new FormControl('', [
+      Validators.required,    // email is required
+      Validators.minLength(5), // min 5 chars
+      // You can also add Validators.email if needed
+    ]),
+    password: new FormControl('', Validators.required), // password required
+    fullName: new FormControl(''), // optional
+    mobileNo: new FormControl(''), // optional
   });
 
   ngOnInit(): void {
+    // Load existing users on component initialization
     this.getUsers();
   }
 
+  // =========================
+  // API METHODS
+  // =========================
+
   getUsers() {
+    // GET request to fetch all users
     this.http.get("https://api.freeprojectapi.com/api/GoalTracker/getAllUsers").subscribe((res: any) => {
-      this.userList = res;
+      this.userList = res; // store response in userList
     });
   }
 
+  // =========================
+  // FORM SUBMISSION
+  // =========================
   onSaveUser() {
     debugger;
-    // this will you give you the object that you have created in the form
-    const formValue = this.userForm.value;
-    // then you can pass it to the api as a parameter
-    this.http.post("https://api.freeprojectapi.com/api/GoalTracker/register", this.userForm.value).subscribe({
+    const formValue = this.userForm.value; // get reactive form values
+
+    // POST request to save new user
+    this.http.post("https://api.freeprojectapi.com/api/GoalTracker/register", formValue).subscribe({
       next: () => {
         alert("User Registered Successfully");
-        this.getUsers();
+        this.getUsers(); // refresh user list after save
       },
       error: (error) => {
-        alert("Error Occurred" + error);
+        alert("Error Occurred: " + error);
       }
-    }
-    )
+    });
   }
+
 }

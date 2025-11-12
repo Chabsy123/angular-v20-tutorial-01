@@ -1,33 +1,64 @@
+<!-- Container for demonstrating different built-in and custom Angular pipes -->
 <div class="row">
-    <div class="col-3">
-        <p>{{courseName}}</p>
-        <p>After upper case => {{courseName | uppercase}}</p>
-        <p>After lower case => {{courseDuration | lowercase}}</p> 
-        <p>After capital case => {{courseDuration | titlecase}}</p>
-    </div>
-    <div class="col-4">
-        <p>{{courseDate}}</p>
-        <p>After date format => {{courseDate}}</p>
-        <p>After date format => {{courseDate | date}}</p>
-        <p>After date format => {{courseDate | date:'dd-MM-yyyy'}}</p>
-        <p>After date format => {{courseDate | date:'dd-MM-yy'}}</p>
-        <p>After date format => {{courseDate | date:'dd-MMM-yy'}}</p>
-        <p>After date format => {{courseDate | date:'dd-MMMM-yy'}}</p>
-    </div>
-    <div class="col-3">
-        <p>{{rollNoList}}</p>
-        <p>After slice => {{rollNoList | slice:2}}</p>
-    </div>
+  <div class="col-3">
+    <!-- Display the course name as is -->
+    <p>{{ courseName }}</p>
+
+    <!-- Converts the course name text to uppercase -->
+    <p>After upper case => {{ courseName | uppercase }}</p>
+
+    <!-- Converts the course duration text to lowercase -->
+    <p>After lower case => {{ courseDuration | lowercase }}</p>
+
+    <!-- Converts the course duration text to title case (capitalizes each word) -->
+    <p>After capital case => {{ courseDuration | titlecase }}</p>
+  </div>
+
+  <div class="col-4">
+    <!-- Display original date value -->
+    <p>{{ courseDate }}</p>
+
+    <!-- Display date without pipe (default format as string) -->
+    <p>After date format => {{ courseDate }}</p>
+
+    <!-- Default Angular date format -->
+    <p>After date format => {{ courseDate | date }}</p>
+
+    <!-- Custom date format: Day-Month-Year -->
+    <p>After date format => {{ courseDate | date : 'dd-MM-yyyy' }}</p>
+
+    <!-- Short year format -->
+    <p>After date format => {{ courseDate | date : 'dd-MM-yy' }}</p>
+
+    <!-- Abbreviated month name -->
+    <p>After date format => {{ courseDate | date : 'dd-MMM-yy' }}</p>
+
+    <!-- Full month name -->
+    <p>After date format => {{ courseDate | date : 'dd-MMMM-yy' }}</p>
+  </div>
+
+  <div class="col-3">
+    <!-- Display the full roll number list array -->
+    <p>{{ rollNoList }}</p>
+
+    <!-- Use slice pipe to display elements starting from index 2 -->
+    <p>After slice => {{ rollNoList | slice : 2 }}</p>
+  </div>
 </div>
+
 <div class="row">
-    <div class="col-4">
-        <p>{{studentObj}}</p>
-        <p>After json format => {{studentObj | json}}</p>
-    </div>
-    <div class="col-4">
-        name : {{studentObj.name | naPipe}} <br>
-        email: {{studentObj.email | naPipe}} <br>
-        state: {{studentObj.state | naPipe}} <br>
-    </div>
+  <div class="col-4">
+    <!-- Display the entire student object -->
+    <p>{{ studentObj }}</p>
+
+    <!-- Display the object in JSON string format for better readability -->
+    <p>After json format => {{ studentObj | json }}</p>
+  </div>
+
+  <div class="col-4">
+    <!-- Custom Pipe (naPipe): replaces empty or null values with 'N/A' -->
+    name : {{ studentObj.name | naPipe }} <br />
+    email: {{ studentObj.email | naPipe }} <br />
+    state: {{ studentObj.state | naPipe }} <br />
+  </div>
 </div>
- 
