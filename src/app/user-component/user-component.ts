@@ -13,7 +13,7 @@ import { MasterService } from '../services/master-service';
 
 export class UserComponent implements OnInit {
 
-  // ==================== VARIABLES ====================
+  // VARIABLES 
 
   // This array will store the list of all users fetched from the API
   userList: any[] = [];
@@ -34,6 +34,8 @@ export class UserComponent implements OnInit {
   // This creates instances of HttpClient and MasterService automatically
   http = inject(HttpClient);
   masterService = inject(MasterService);
+  // or use constructor injection
+  // constructor(private http: HttpClient, private masterService: MasterService) { }
 
   // ==================== LIFECYCLE HOOK ====================
 
@@ -53,6 +55,7 @@ export class UserComponent implements OnInit {
   //  GET ALL USERS
   getUsers() {
     // Uses MasterService to call an API endpoint that returns all users
+    // can only subscribe to an observable
     debugger;
     this.masterService.getUsers().subscribe((res: any) => {
       // The response (list of users) is stored in userList array

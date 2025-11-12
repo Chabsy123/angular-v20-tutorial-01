@@ -1,0 +1,82 @@
+<!-- <h1>Welcome</h1>
+
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <app-admin></app-admin>
+        </td>
+        <td>
+         <app-user></app-user>
+        </td>
+        <td>
+            <app-data-binding></app-data-binding>
+        </td>
+    </tr>
+</table>
+
+<app-data-binding></app-data-binding>
+<app-signal-ex> </app-signal-ex>
+<app-control-flow></app-control-flow> -->
+
+<!--
+  layout-component.html:
+  This file represents the main layout/navigation bar displayed
+  after the user logs in. It uses router navigation to load
+  different feature modules (admin, signal, databinding, etc.)
+  inside the <router-outlet> below.
+-->
+
+<!-- Navigation bar section -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- Brand name/logo -->
+    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+
+    <!-- Button for collapsing navbar on small screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links section -->
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <!-- Router links navigate to different routes defined in app.routes.ts -->
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="admin" routerLinkActive="active">Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="control-flow-statement">Control-Flow</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="databinding">Data Binding</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="signal">Signal</a>
+        </li>
+        <!-- Other routes commented out for now -->
+      </ul>
+
+      <!-- Login/Logout buttons on the right side -->
+      <form class="d-flex">
+        @if (loggedUserName == '') {
+          <!-- Show login button if user not logged in -->
+          <button class="btn btn-primary" routerLink="login" type="button">Login</button>
+        } @else {
+          <!-- Show username and logout button if logged in -->
+          <button class="btn btn-warning" type="button">{{loggedUserName}}</button>
+          <button class="btn btn-primary" (click)="onLogOff()" type="button">LogOff</button>
+        }
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Router outlet renders components of selected route -->
+<router-outlet />
+
+<!--
+  Relation:
+  - Uses LayoutComponent.ts logic for navbar & logoff.
+  - Loaded as a child route container for inner pages
+    (admin, signal, databinding, etc.).
+-->

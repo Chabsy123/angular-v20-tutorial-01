@@ -1,0 +1,18 @@
+body {
+    background: #f3f4f6;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+.login-card {
+    max-width: 420px;
+    margin: 8vh auto;
+    padding: 2rem;
+    border-radius: .75rem;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.06)
+}
+
+.brand {
+    font-weight: 600;
+    letter-spacing: -0.02em
+}

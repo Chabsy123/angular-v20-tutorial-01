@@ -9,50 +9,40 @@ import { UserComponent } from './user-component/user-component';
 import { ReactiveUserComponent } from './components/reactive-user-component/reactive-user-component';
 import { PipeComponent } from './components/pipe-component/pipe-component';
 import { ResourceApiComponent } from './components/resource-api-component/resource-api-component';
-// import { UserComponent } from './components/user-component/user-component';
+import { LayoutComponent } from './components/layout-component/layout-component';
+import { LoginComponent } from './components/login-component/login-component';
 
 export const routes: Routes = [
   {
-    path: 'admin',
-    component: AdminComponent
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path: 'control-flow-statement',
-    component: ControlFlowComponent
+    path: 'login',
+    component: LoginComponent
   },
-
   {
-    path: 'databinding',
-    component: DatabindingComponent
-  },
-
-  {
-    path: 'signal',
-    component: SignalComponent
-   },
-  {
-    path: 'att-directives',
-    component: AttDirective
-   },
-   {
-    path: 'get-api',
-    component: GetapiComponent
-    },
-   {
-    path: 'user',
-    component: UserComponent
-   },
-   {
-    path: 'reactive-user',
-    component: ReactiveUserComponent
-   },
-   {
-    path: 'pipe',
-    component: PipeComponent
-   },
-   {
-    path: 'resource-api',
-    component: ResourceApiComponent
-   }
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'admin', component: AdminComponent },
+      { path: 'control-flow-statement', component: ControlFlowComponent },
+      { path: 'databinding', component: DatabindingComponent },
+      { path: 'signal', component: SignalComponent },
+      { path: 'att-directives', component: AttDirective },
+      { path: 'get-api', component: GetapiComponent },
+      { path: 'user', component: UserComponent },
+      { path: 'reactive-user', component: ReactiveUserComponent },
+      { path: 'pipe', component: PipeComponent },
+      { path: 'resource-api', component: ResourceApiComponent }
+    ]
+  }
 ];
-// handles navigation or to achieve page based navigation
+
+/*
+Relation:
+- Connects LoginComponent (entry point) and LayoutComponent (post-login dashboard).
+- Defines nested child routes under LayoutComponent.
+- Controls page navigation for navbar links.
+*/

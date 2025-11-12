@@ -1,0 +1,82 @@
+<!--
+  Purpose:
+  - Displays the login form UI for the app.
+  - Binds form fields to `loginObj` in login-component.ts using [(ngModel)].
+  - Triggers authentication logic through `onLogin()` method.
+  - Works with MasterService and Router to handle login events.
+-->
+
+<main class="container">
+  <div class="login-card">
+    <div class="text-center mb-4">
+      <!-- App brand name -->
+      <div class="brand h4">MyApp</div>
+      <p class="mb-0 text-muted">Sign in to your account</p>
+    </div>
+
+    <!-- Login Form -->
+    <form aria-label="Simple login form">
+      <!--
+        Input: Email or Username
+        - [(ngModel)]="loginObj.userName" → Two-way data binding to `loginObj.userName`
+        - name="userName" → Needed for ngModel to track the field
+        - autocomplete="email" → Suggests stored emails
+      -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Enter Email or Username</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="loginObj.userName"
+          name="userName"
+          class="form-control"
+          placeholder="you@example.com"
+          required
+          autocomplete="email"
+        />
+      </div>
+
+      <!--
+        Input: Password
+        - [(ngModel)]="loginObj.password" → Two-way data binding to `loginObj.password`
+        - name="password" → Required for form tracking
+        - autocomplete="current-password" → Suggests stored passwords
+      -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="loginObj.password"
+          name="password"
+          class="form-control"
+          placeholder="Enter password"
+          required
+          autocomplete="current-password"
+        />
+      </div>
+
+      <!--
+        Button:
+        - (click)="onLogin()" calls the method in login-component.ts.
+        - Validates user credentials and triggers MasterService event if successful.
+      -->
+      <div class="d-grid">
+        <button type="button" class="btn btn-primary" (click)="onLogin()">Sign in</button>
+      </div>
+    </form>
+
+    <!-- Footer -->
+    <p class="text-center text-muted small mt-3 mb-0">
+      © <span id="year"></span> MyApp
+    </p>
+  </div>
+</main>
+
+<!--
+  Relation to Other Files:
+  - login-component.ts: Handles the logic for login validation and routing.
+  - master.service.ts: Emits login status to other components.
+  - layout-component.ts / layout-component.html: Displays main navigation once logged in.
+  - app.routes.ts: Routes the user to /login or /admin accordingly.
+-->

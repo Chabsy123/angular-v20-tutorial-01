@@ -9,7 +9,7 @@ import { UserComponent } from './user-component/user-component';
 import { ReactiveUserComponent } from './components/reactive-user-component/reactive-user-component';
 import { PipeComponent } from './components/pipe-component/pipe-component';
 import { ResourceApiComponent } from './components/resource-api-component/resource-api-component';
-
+import { MasterService } from './services/master-service';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, AdminComponent, DatabindingComponent, SignalComponent,ControlFlowComponent, RouterLink, RouterLinkActive, GetapiComponent,UserComponent, ReactiveUserComponent, PipeComponent, ResourceApiComponent],
@@ -18,4 +18,30 @@ import { ResourceApiComponent } from './components/resource-api-component/resour
 })
 export class App {
   protected readonly title = signal('angular-v20-tutorial-01');
+
+  loggedUserName: string = "";
+
+  constructor(private masterService:MasterService) {
+    this.readLoggedData();
+    this.masterService.onLogin.subscribe(res => {
+      this.readLoggedData();
+      // if (res) {
+      //   this.loggedUserName = "Admin";
+      // }
+    })
+
+  }
+
+  readLoggedData() {
+    const loggedData = localStorage.getItem("angular20User");
+    if (loggedData !== null) {
+      this.loggedUserName = loggedData;
+    }
+  }
+
+  onLogOff() {
+    localStorage.removeItem("angular20User");
+    this.readLoggedData();
+    this.loggedUserName = "";
+  }
 }
