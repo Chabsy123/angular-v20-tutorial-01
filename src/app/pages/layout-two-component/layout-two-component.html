@@ -1,11 +1,24 @@
+<!-- 
+  Navigation bar that appears at the top of the page.
+  It uses Bootstrap classes for styling and responsiveness.
+-->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-<div class="container-fluid">
+  <div class="container-fluid">
+    
+    <!-- Brand logo or title -->
     <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+
+    <!-- Hamburger button for collapsing menu on small screens -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Collapsible menu section -->
     <div class="collapse navbar-collapse" id="mynavbar">
+
+      <!-- Navigation links (Left side of the navbar) -->
       <ul class="navbar-nav me-auto">
+        <!-- Each list item represents a nav link -->
         <li class="nav-item" style="margin-top:-12px;">
           <a class="nav-link active" href="javascript:void(0)">Link</a>
         </li>
@@ -16,11 +29,19 @@
           <a class="nav-link" href="javascript:void(0)">Link</a>
         </li>
       </ul>
+
+      <!-- Right-side button for logging out -->
       <form class="d-flex">
+        <!-- Calls onLogOff() in the component when clicked -->
         <button class="btn btn-primary" (click)="onLogOff()" type="button">Log Out</button>
       </form>
+
     </div>
   </div>
 </nav>
 
+<!-- 
+  This is where child components will be rendered.
+  For example, dashboard or other pages inside this layout.
+-->
 <router-outlet></router-outlet>
