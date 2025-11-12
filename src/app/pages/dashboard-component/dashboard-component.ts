@@ -17,14 +17,14 @@ export class DashboardComponent {
   }
 
   getUsers(){
-    debugger;
+    // debugger;
     this.http.get("https://freeapi.miniprojectideas.com/api/User/GetAll").subscribe({
       next:(response) => {
         debugger;
         console.log(response);
       },
       error:(error) => {
-        debugger;
+        // debugger;
         console.log(error);
       }
     })

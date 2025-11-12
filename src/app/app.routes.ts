@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login-component/login-component';
 import { LogintwoComponent } from './pages/logintwo-component/logintwo-component';
 import { LayoutTwoComponent } from './pages/layout-two-component/layout-two-component';
 import { DashboardComponent } from './pages/dashboard-component/dashboard-component';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   // {
@@ -34,10 +35,11 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutTwoComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
       }
     ]
   }
